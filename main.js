@@ -39,6 +39,24 @@
       } else if (pageNumber === data.photos.pages) {
         $(".next-button").hide();
       }  
+    });
+
+    $(".previous-button").click(function(){
+      $("#images").empty();
+      pageNumber--;
+      $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.search&tags=" +$(".pure-input-rounded").val()+ "&api_key=" +apiKey+ "&page=" +pageNumber+ "&per_page=10&format=json&jsoncallback=?", function(data){
+        $.each(data.photos.photo, function(i, item){
+          var src = "http://farm" +item.farm+ ".static.flickr.com/" +item.server+ "/" +item.id+ "_" +item.secret+ "_m.jpg";
+          $("<img/>").attr("src", src).click(function(){
+            $("#overlay-image").attr("src", src);
+            $(".overlay").show();
+            $(".overlay-content").show();
+          }).appendTo("#images");
+        });
+      });
+      if (pageNumber == 1) {
+        $(".previous-button").hide();
+      }
     });      
   })
 
