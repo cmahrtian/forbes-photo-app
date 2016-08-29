@@ -1,0 +1,22 @@
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: #000;
+  opacity: 1.2;
+  filter: alpha(opacity = 70);
+  display: none;
+  z-index: 100;
+}
+
+.overlay-content {
+  position: fixed;
+  width: 100%;
+  top: 100px;
+  text-align: center;
+  display: none;
+  overflow: hidden;
+  z-index: 100;
+}
